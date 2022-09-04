@@ -1,5 +1,5 @@
-#Pokemon static - NextJS
-##This is a project to practice nextjs 
+# Pokemon static - NextJS
+## This is a project to practice nextjs 
 ### Author: Jonathan Navas
 
 
