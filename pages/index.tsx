@@ -23,7 +23,7 @@ const HomePage: NextPage<Props> = ({ pokemons }) => {
 }
 // getStaticProps works only on the server side
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { data } = await pokeApi.get<PokemonListResponse>("/pokemon?limit=50")
+  const { data } = await pokeApi.get<PokemonListResponse>("/pokemon?limit=10")
 
   const pokemons: SmallPokemon[] = data.results.map((pokemon, index) => ({
     ...pokemon,

@@ -1,7 +1,10 @@
 # Pokemon static - NextJS
-## This is a project to practice nextjs 
+
+## This is a project to practice nextjs
+
 ### Author: Jonathan Navas
 
+### This project was uploaded on Vercel: [https://pokemon-static-netxjs.vercel.app/]
 
 ## Getting Started
 
