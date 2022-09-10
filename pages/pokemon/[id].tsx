@@ -3,10 +3,9 @@ import confetti from "canvas-confetti"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { ParsedUrlQuery } from "querystring"
 import { useEffect, useState } from "react"
-import { pokeApi } from "../../api"
 import { Layout } from "../../components/layouts"
 import { Pokemon } from "../../interfaces"
-import { localFavorites } from "../../utils"
+import { getPokemonInfo, localFavorites } from "../../utils"
 
 interface Props {
   pokemon: Pokemon
@@ -77,7 +76,12 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
             </Card.Header>
             <Card.Body>
               <Text size={30}>Sprites:</Text>
-              <Container direction="row" display="flex" gap={0}>
+              <Container
+                direction="row"
+                display="flex"
+                justify="space-between"
+                gap={0}
+              >
                 <Image
                   src={pokemon.sprites.front_default}
                   alt={pokemon.name}
@@ -112,7 +116,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const paths = [...Array(10)].map((value, index) => ({
+  const paths = [...Array(50)].map((value, index) => ({
     params: { id: `${index + 1}` },
   }))
 
@@ -125,11 +129,10 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { params } = ctx
   const { id } = params as { id: string }
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${id}`)
 
   return {
     props: {
-      pokemon: data,
+      pokemon: await getPokemonInfo(id),
     },
   }
 }
